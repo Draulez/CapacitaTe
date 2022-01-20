@@ -8,8 +8,8 @@
             "default": {
               "lambda": {
                 "arn": "arn:aws:lambda:us-east-1:210718818885:function:ask-capacitate-default-default-1642504815957",
-                "lastModified": "2022-01-18T15:04:03.000+0000",
-                "revisionId": "e13fbe73-bfa1-4cf9-8f9d-4532c4f87b86"
+                "lastModified": "2022-01-20T10:45:06.000+0000",
+                "revisionId": "ec196d03-0246-4ccd-adbb-2dc1a3fef9c4"
               },
               "iamRole": "arn:aws:iam::210718818885:role/ask-lambda-CapacitaTe-1642504806849"
             }
@@ -22,7 +22,7 @@
       },
       "code": {
         "default": {
-          "lastDeployHash": "2mRuEp+bVLjwNSl0FM3tuGQ0iNg="
+          "lastDeployHash": "du3pNeQqePqmzDT8yNZ2MFs+Xc4="
         }
       }
     }
