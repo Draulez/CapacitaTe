@@ -2,17 +2,42 @@
 // Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
+const interceptors = require('./interceptors');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
+        const {attributesManager} = handlerInput;
+        const requestAttributes = attributesManager.getRequestAttributes();
+
         const speakOutput = 'Hola bienvenido a capacitate.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
             .getResponse();
+    }
+};
+
+const BuenosDiasIntentHandler = {
+    canHandle(handlerInput){
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'BuenosDiasIntent';
+    },
+    handle(handlerInput) {
+        const {requestEnvelope, responseBuilder, attributesManager} = handlerInput;
+        const {intent} = requestEnvelope.request;
+        const requestAttributes = attributesManager.getRequestAttributes();
+
+        const diaSemana = Alexa.getSlotValue(requestEnvelope, 'diaSemana');
+        speakOutput = "algo";
+
+        return handlerInput.responseBuilder
+        .speak(speakOutput)
+        //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+        .getResponse();
+
     }
 };
 const HelloWorldIntentHandler = {
@@ -108,12 +133,20 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
+        BuenosDiasIntentHandler,
         HelloWorldIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
-        ) 
+        )
+    .addRequestInterceptors(
+        interceptors.LocalizationRequestInterceptor,
+        interceptors.LoggingRequestInterceptor
+    )
+    .addResponseInterceptors(
+        interceptors.LoggingResponseInterceptor
+    )
     .addErrorHandlers(
         ErrorHandler,
         )
