@@ -3,6 +3,8 @@
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
 const interceptors = require('./interceptors');
+const moment = require('moment-timezone');
+moment.locale('es');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -11,8 +13,18 @@ const LaunchRequestHandler = {
     handle(handlerInput) {
         const {attributesManager} = handlerInput;
         const requestAttributes = attributesManager.getRequestAttributes();
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
-        const speakOutput = 'Hola bienvenido a capacitate.';
+        const nombre = sessionAttributes['nombre'];
+
+        let speakOutput;
+
+        if(nombre)
+        speakOutput = requestAttributes.t('BIENVENIDA2_MSG', nombre);
+        else
+        speakOutput = requestAttributes.t('BIENVENIDA_MSG');
+
+
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -21,7 +33,7 @@ const LaunchRequestHandler = {
 };
 
 const BuenosDiasIntentHandler = {
-    canHandle(handlerInput){
+    canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'BuenosDiasIntent';
     },
@@ -30,14 +42,30 @@ const BuenosDiasIntentHandler = {
         const {intent} = requestEnvelope.request;
         const requestAttributes = attributesManager.getRequestAttributes();
 
+
+        const timezone = 'Europe/Madrid';
+        const formato = 'dddd';
+        const diaSemanaMoment = moment().format(formato);
+        
         const diaSemana = Alexa.getSlotValue(requestEnvelope, 'diaSemana');
-        speakOutput = "algo";
+
+        let speakOutput;
+
+        if (diaSemana == diaSemanaMoment)
+        speakOutput = requestAttributes.t('PREGUNTA1_CORRECTA');
+        else
+        speakOutput = requestAttributes.t('PREGUNTA1_INCORRECTA', diaSemanaMoment);
+        
 
         return handlerInput.responseBuilder
-        .speak(speakOutput)
-        //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-        .getResponse();
-
+            .speak(speakOutput)
+            .addDelegateDirective({
+                name: 'PreguntaDos',
+                confirmationStatus: 'NONE',
+                slots: {}
+            })
+            //.reprompt(speakOutput)
+            .getResponse();
     }
 };
 const HelloWorldIntentHandler = {
