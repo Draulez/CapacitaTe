@@ -8,8 +8,8 @@
             "default": {
               "lambda": {
                 "arn": "arn:aws:lambda:us-east-1:210718818885:function:ask-capacitate-default-default-1642504815957",
-                "lastModified": "2022-01-20T10:45:06.000+0000",
-                "revisionId": "ec196d03-0246-4ccd-adbb-2dc1a3fef9c4"
+                "lastModified": "2022-01-20T10:58:13.000+0000",
+                "revisionId": "4457ec7d-c1a3-47d4-a58a-0376528d52de"
               },
               "iamRole": "arn:aws:iam::210718818885:role/ask-lambda-CapacitaTe-1642504806849"
             }

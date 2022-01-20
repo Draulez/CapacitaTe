@@ -1,0 +1,148 @@
+{
+  "interactionModel": {
+      "languageModel": {
+          "invocationName": "hello world",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.FallbackIntent",
+                  "samples": []
+              },
+              {
+                  "name": "BuenosDiasIntent",
+                  "slots": [
+                      {
+                          "name": "diaSemana",
+                          "type": "DiaSemana",
+                          "samples": [
+                              "Hoy es {diaSemana}",
+                              "{diaSemana}"
+                          ]
+                      }
+                  ],
+                  "samples": [
+                      "Inicia mi día",
+                      "Buenos dias"
+                  ]
+              }
+          ],
+          "types": [
+              {
+                  "name": "DiaSemana",
+                  "values": [
+                      {
+                          "id": "7",
+                          "name": {
+                              "value": "domingo",
+                              "synonyms": [
+                                  "Sunday"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "6",
+                          "name": {
+                              "value": "sabado",
+                              "synonyms": [
+                                  "Saturday"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "5",
+                          "name": {
+                              "value": "viernes",
+                              "synonyms": [
+                                  "friday"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "4",
+                          "name": {
+                              "value": "jueves",
+                              "synonyms": [
+                                  "thursday"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "3",
+                          "name": {
+                              "value": "miercoles",
+                              "synonyms": [
+                                  "wednesday"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "2",
+                          "name": {
+                              "value": "martes",
+                              "synonyms": [
+                                  "tueday"
+                              ]
+                          }
+                      },
+                      {
+                          "id": "1",
+                          "name": {
+                              "value": "lunes",
+                              "synonyms": [
+                                  "monday"
+                              ]
+                          }
+                      }
+                  ]
+              }
+          ]
+      },
+      "dialog": {
+          "intents": [
+              {
+                  "name": "BuenosDiasIntent",
+                  "confirmationRequired": false,
+                  "prompts": {},
+                  "slots": [
+                      {
+                          "name": "diaSemana",
+                          "type": "DiaSemana",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.1496044798665.347421298577"
+                          }
+                      }
+                  ]
+              }
+          ],
+          "delegationStrategy": "ALWAYS"
+      },
+      "prompts": [
+          {
+              "id": "Elicit.Slot.1496044798665.347421298577",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "¿En que día de la semana estamos?"
+                  }
+              ]
+          }
+      ]
+  }
+}
