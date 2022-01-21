@@ -16,25 +16,938 @@
                     "samples": []
                 },
                 {
-                    "name": "HelloWorldIntent",
-                    "slots": [],
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "BuenosDiasIntent",
+                    "slots": [
+                        {
+                            "name": "diaSemana",
+                            "type": "DiaSemana",
+                            "samples": [
+                                "Hoy es {diaSemana}",
+                                "{diaSemana}"
+                            ]
+                        }
+                    ],
                     "samples": [
-                        "hello",
-                        "how are you",
-                        "say hi world",
-                        "say hi",
-                        "hi",
-                        "say hello world",
-                        "say hello"
+                        "Inicia mi día",
+                        "Buenos dias"
                     ]
                 },
                 {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
+                    "name": "PreguntaTresIntent",
+                    "slots": [
+                        {
+                            "name": "clima",
+                            "type": "TipoClima",
+                            "samples": [
+                                "Hoy hace {clima}",
+                                "{clima}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "pregunta tres"
+                    ]
+                },
+                {
+                    "name": "PreguntaCuatroIntent",
+                    "slots": [
+                        {
+                            "name": "estadoAnimo",
+                            "type": "TipoAnimo",
+                            "samples": [
+                                "Me siento {estadoAnimo}",
+                                "Me encuentro {estadoAnimo}",
+                                "Estoy {estadoAnimo}",
+                                "{estadoAnimo}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "pregunta cuatro"
+                    ]
+                },
+                {
+                    "name": "RegistrarDatosIntent",
+                    "slots": [
+                        {
+                            "name": "nombre",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "{nombre}",
+                                "Me llamo {nombre}",
+                                "Mi nombre es {nombre}"
+                            ]
+                        },
+                        {
+                            "name": "diaNac",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "{diaNac} {mesNac} {anyoNac}",
+                                "El {diaNac}",
+                                "{diaNac}",
+                                "El {diaNac} de {mesNac} de {anyoNac}",
+                                "{diaNac} de {mesNac} de {anyoNac}"
+                            ]
+                        },
+                        {
+                            "name": "mesNac",
+                            "type": "Mes",
+                            "samples": [
+                                "{mesNac}",
+                                "En {mesNac}",
+                                "De {mesNac}"
+                            ]
+                        },
+                        {
+                            "name": "anyoNac",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER",
+                            "samples": [
+                                "{anyoNac}",
+                                "En {anyoNac}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Registra mis datos",
+                        "Registrar mis datos",
+                        "Edita mis datos",
+                        "Modifica mis datos"
+                    ]
+                },
+                {
+                    "name": "PreguntaDosIntent",
+                    "slots": [
+                        {
+                            "name": "diaMes",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "{diaMes} de {mes} de {anyo}",
+                                "El {diaMes} de {mes} de {anyo}",
+                                "{diaMes}",
+                                "El {diaMes}",
+                                "{diaMes} {mes} {anyo}"
+                            ]
+                        },
+                        {
+                            "name": "mes",
+                            "type": "Mes",
+                            "samples": [
+                                "{mes}",
+                                "En {mes}",
+                                "De {mes}"
+                            ]
+                        },
+                        {
+                            "name": "anyo",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER",
+                            "samples": [
+                                "{anyo}",
+                                "En {anyo}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "Pregunta dos"
+                    ]
                 }
             ],
-            "types": []
-        }
+            "types": [
+                {
+                    "name": "DiaSemana",
+                    "values": [
+                        {
+                            "id": "7",
+                            "name": {
+                                "value": "domingo",
+                                "synonyms": [
+                                    "Sunday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "6",
+                            "name": {
+                                "value": "sabado",
+                                "synonyms": [
+                                    "Saturday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "5",
+                            "name": {
+                                "value": "viernes",
+                                "synonyms": [
+                                    "friday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "4",
+                            "name": {
+                                "value": "jueves",
+                                "synonyms": [
+                                    "thursday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "3",
+                            "name": {
+                                "value": "miercoles",
+                                "synonyms": [
+                                    "wednesday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "name": {
+                                "value": "martes",
+                                "synonyms": [
+                                    "tueday"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "name": {
+                                "value": "lunes",
+                                "synonyms": [
+                                    "monday"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Mes",
+                    "values": [
+                        {
+                            "id": "12",
+                            "name": {
+                                "value": "diciembre",
+                                "synonyms": [
+                                    "december"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "11",
+                            "name": {
+                                "value": "noviembre",
+                                "synonyms": [
+                                    "november"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "10",
+                            "name": {
+                                "value": "octubre",
+                                "synonyms": [
+                                    "october"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "9",
+                            "name": {
+                                "value": "septiembre",
+                                "synonyms": [
+                                    "september"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "8",
+                            "name": {
+                                "value": "agosto",
+                                "synonyms": [
+                                    "august"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "7",
+                            "name": {
+                                "value": "julio",
+                                "synonyms": [
+                                    "july"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "6",
+                            "name": {
+                                "value": "junio",
+                                "synonyms": [
+                                    "june"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "5",
+                            "name": {
+                                "value": "mayo",
+                                "synonyms": [
+                                    "may"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "4",
+                            "name": {
+                                "value": "abril",
+                                "synonyms": [
+                                    "april"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "3",
+                            "name": {
+                                "value": "marzo",
+                                "synonyms": [
+                                    "march"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "name": {
+                                "value": "febrero",
+                                "synonyms": [
+                                    "february"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "name": {
+                                "value": "enero",
+                                "synonyms": [
+                                    "january"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "TipoClima",
+                    "values": [
+                        {
+                            "id": "3",
+                            "name": {
+                                "value": "soleado",
+                                "synonyms": [
+                                    "sol"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "2",
+                            "name": {
+                                "value": "nublado",
+                                "synonyms": [
+                                    "nubes"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "1",
+                            "name": {
+                                "value": "lloviendo",
+                                "synonyms": [
+                                    "agua",
+                                    "lluvia"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "TipoAnimo",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "triste"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "contento"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "enfadado"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DiaMes",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "31"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "30"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "29"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "28"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "27"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "26"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "25"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "24"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "23"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "22"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "21"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "20"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "19"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "18"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "17"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "16"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "15"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "14"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "13"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "12"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "11"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "10"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "9"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "8"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "7"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "6"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "5"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "4"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "3"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "2"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "1"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "BuenosDiasIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "diaSemana",
+                            "type": "DiaSemana",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1496044798665.347421298577"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PreguntaTresIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "clima",
+                            "type": "TipoClima",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.404287933918.854819964161"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PreguntaCuatroIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "estadoAnimo",
+                            "type": "TipoAnimo",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.455542885890.215112623494"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "RegistrarDatosIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.665538151563"
+                    },
+                    "slots": [
+                        {
+                            "name": "nombre",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.665538151563.653844525984"
+                            }
+                        },
+                        {
+                            "name": "diaNac",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.665538151563.435833933119"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isLessThan",
+                                    "prompt": "Slot.Validation.665538151563.435833933119.652923615341",
+                                    "value": "31"
+                                },
+                                {
+                                    "type": "isGreaterThan",
+                                    "prompt": "Slot.Validation.665538151563.435833933119.251382088592",
+                                    "value": "1"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "mesNac",
+                            "type": "Mes",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.665538151563.837619121872"
+                            }
+                        },
+                        {
+                            "name": "anyoNac",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.665538151563.1053313505073"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isLessThan",
+                                    "prompt": "Slot.Validation.665538151563.1053313505073.1245622337782",
+                                    "value": "2022"
+                                },
+                                {
+                                    "type": "isGreaterThan",
+                                    "prompt": "Slot.Validation.665538151563.1053313505073.582025985290",
+                                    "value": "1900"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "PreguntaDosIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "diaMes",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1296092359227.486347752686"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isLessThanOrEqualTo",
+                                    "prompt": "Slot.Validation.1296092359227.486347752686.895624289176",
+                                    "value": "31"
+                                },
+                                {
+                                    "type": "isGreaterThanOrEqualTo",
+                                    "prompt": "Slot.Validation.1296092359227.486347752686.1431671722407",
+                                    "value": "1"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "mes",
+                            "type": "Mes",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1296092359227.349940757482"
+                            }
+                        },
+                        {
+                            "name": "anyo",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1296092359227.292600961831"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1496044798665.347421298577",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "¿En que día de la semana estamoss?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1136760534916.1487274412969",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Me has dicho que estamos a {anyo} . ¿Pero en que día?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Me has dicho que estamos a {mes} . ¿Pero en que día?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "¿Y en que fecha estamos?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.404287933918.854819964161",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "¿Que tiempo hace hoy?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1136760534916.641899485633",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Me has dicho el día {diaMes} . ¿Pero de en que mes?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Falta el mes. ¿En que mes estamos?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1136760534916.851570130037",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Me has dicho el día {diaMes} y el mes {mes} . ¿Pero en que año?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Falta el año. ¿En que año estamos?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1136760534916",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Me has dicho que nacieste el día {diaMes} de {mes} de {anyo} . ¿Es correcto?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.455542885890.215112623494",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "¿Como te encuentras hoy?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.665538151563.653844525984",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Empecemos por tu nombre ¿Como quieres que te llame?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.665538151563.435833933119.652923615341",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Ese numero es muy alto, di un numero mas bajo"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.665538151563.435833933119.251382088592",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Ese numero es muy bajo di un numero mas alto"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.665538151563.1053313505073",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Solo me faltaría el año de nacimiento, dime ¿En que año naciste?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.665538151563.1053313505073.1245622337782",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Por favor, introduce una fecha valida."
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.665538151563.1053313505073.582025985290",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Dudo que seas tan viejo para haber nacido en {anyoNac} , por favor di tu año de nacimiento."
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.665538151563.837619121872",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Me faltaría el mes, dime en que mes del año naciste?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.665538151563.435833933119",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Muy bien, vamos a seguir por registrar tu fecha de nacimiento, dime ¿Cuando naciste?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.665538151563",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "¿Naciste el dia {diaNac} de {mesNac} de {anyoNac} ?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1296092359227.486347752686.1510413066702",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Ese numero es muy bajo di un numero mas alto"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1296092359227.486347752686.953349625131",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Ese numero es muy alto, di un numero mas bajo"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1296092359227.486347752686",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "¿En que fecha estamos?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1296092359227.349940757482",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Me faltaría el mes, dime ¿En que mes estamos?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1296092359227.292600961831",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Solo me falta saber el año ¿En que año estamos?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1296092359227.486347752686.895624289176",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Día invalido. DI un día valido"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1296092359227.486347752686.1431671722407",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Día invalido. DI un día valido"
+                    }
+                ]
+            }
+        ]
     }
-  }
-  
+}
