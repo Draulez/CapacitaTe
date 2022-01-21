@@ -60,7 +60,7 @@ const BuenosDiasIntentHandler = {
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .addDelegateDirective({
-                name: 'PreguntaDos',
+                name: 'PreguntaDosIntent',
                 confirmationStatus: 'NONE',
                 slots: {}
             })
@@ -68,19 +68,149 @@ const BuenosDiasIntentHandler = {
             .getResponse();
     }
 };
-const HelloWorldIntentHandler = {
+
+const PreguntaDosIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'PreguntaDosIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hello World!';
+        const {requestEnvelope, responseBuilder, attributesManager} = handlerInput;
+        const {intent} = requestEnvelope.request;
+        const requestAttributes = attributesManager.getRequestAttributes();
+
+
+        const timezone = 'Europe/Madrid';
+        const diaMesMoment = moment().format('D');
+        const mesMoment = moment().format('MMMM');
+        const anyoMoment = moment().format('YYYY');
+        
+        const diaMes = Alexa.getSlotValue(requestEnvelope, 'diaMes');
+        const mes = Alexa.getSlotValue(requestEnvelope, 'mes');
+        const anyo = Alexa.getSlotValue(requestEnvelope, 'anyo');
+
+        let speakOutput = "";
+
+        if(diaMesMoment != diaMes)
+            speakOutput = requestAttributes.t('PREGUNTA2_INCORRECTA1', diaMesMoment);
+        if(mesMoment != mes)
+            speakOutput = speakOutput + requestAttributes.t('PREGUNTA2_INCORRECTA2', mesMoment);
+        if(anyoMoment != anyo)
+            speakOutput = speakOutput + requestAttributes.t('PREGUNTA2_INCORRECTA3', anyoMoment);
+        if(speakOutput === "")
+            speakOutput = requestAttributes.t('PREGUNTA2_CORRECTA', anyoMoment);
+
+           // speakOutput = "Algo";
+        
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .addDelegateDirective({
+                name: 'PreguntaTresIntent',
+                confirmationStatus: 'NONE',
+                slots: {}
+            })
+            .getResponse();
+    }
+};
+
+const PreguntaTresIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'PreguntaTresIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder, attributesManager} = handlerInput;
+        const {intent} = requestEnvelope.request;
+        const requestAttributes = attributesManager.getRequestAttributes();
+
+        const clima = Alexa.getSlotValue(requestEnvelope, 'clima');
+
+        let speakOutput = requestAttributes.t('PREGUNTA4', clima);
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .addDelegateDirective({
+                name: 'PreguntaCuatroIntent',
+                confirmationStatus: 'NONE',
+                slots: {}
+            })
+            .getResponse();
+    }
+};
+
+const PreguntaCuatroIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'PreguntaCuatroIntent';
+    },
+    handle(handlerInput) {
+        const {requestEnvelope, responseBuilder, attributesManager} = handlerInput;
+        const {intent} = requestEnvelope.request;
+        const requestAttributes = attributesManager.getRequestAttributes();
+
+        const estadoAnimo = Alexa.getSlotValue(requestEnvelope, 'estadoAnimo');
+
+        let speakOutput;
+
+        switch (estadoAnimo) {
+            case "enfadado":
+                speakOutput = requestAttributes.t('ANIMO_ENFADADO');
+                break;
+            case "contento":
+                speakOutput = requestAttributes.t('ANIMO_CONTENTO');
+                break;
+            case "triste":
+                speakOutput = requestAttributes.t('ANIMO_TRISTE');
+                break;
+            default:
+                speakOutput = requestAttributes.t('ANIMO_COMODIN');
+        }
+
         return handlerInput.responseBuilder
             .speak(speakOutput)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
 };
+
+const RegistrarDatosIntent = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'RegistrarDatosIntent';
+    },
+    handle(handlerInput) {
+        const {requestEnvelope, responseBuilder, attributesManager} = handlerInput;
+        const {intent} = requestEnvelope.request;
+        const requestAttributes = attributesManager.getRequestAttributes();
+
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
+        const nombre = Alexa.getSlotValue(requestEnvelope, 'nombre');
+        const diaNac = Alexa.getSlotValue(requestEnvelope, 'diaNac');
+        const mesNac = Alexa.getSlotValue(requestEnvelope, 'mesNac');
+        const anyoNac = Alexa.getSlotValue(requestEnvelope, 'anyoNac');
+
+        /*sessionAttributes['nombre'] = nombre;
+        sessionAttributes['diaNac'] = diaNac;
+        sessionAttributes['mesNac'] = mesNac;
+        sessionAttributes['anyoNac'] = anyoNac;
+        */
+
+        let speakOutput = requestAttributes.t('REGISTRO_MSG', nombre, diaNac, mesNac, anyoNac);
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
+
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -162,7 +292,10 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         BuenosDiasIntentHandler,
-        HelloWorldIntentHandler,
+        PreguntaDosIntentHandler,
+        PreguntaTresIntentHandler,
+        PreguntaCuatroIntentHandler,
+        RegistrarDatosIntent,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
